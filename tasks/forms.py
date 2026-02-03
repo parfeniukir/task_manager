@@ -8,6 +8,9 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = ["title", "description", "deadline"]
+        widgets = {
+            "deadline": forms.DateInput(attrs={"type": "date"}),
+        }
 
     def clean_deadline(self):
         deadline = self.cleaned_data["deadline"]

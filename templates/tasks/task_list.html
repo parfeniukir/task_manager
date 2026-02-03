@@ -3,12 +3,19 @@
 {% block content %}
 <h2>My tasks</h2>
 
-<a href="{% url 'task_create' %}">Create task</a>
+<a href="{% url 'task-create' %}">Create task</a>
 
 <ul>
     {% for task in tasks %}
         <li>
-            {{ task.title }} - {{ task.deadline }}
+            <form method="post" action="{% url 'task-toggle' task.pk %}" style="display: inline;">
+                {% csrf_token %}
+                <input type="checkbox" {% if task.is_completed %} checked {% endif %} onchange="this.form.submit()">
+
+                {{ task.title }} - {{ task.deadline }}
+            </form>
+            <a href="{% url 'task-update' task.pk %}">Edit</a>
+            <a href="{% url 'task-delete' task.pk %}">Delete</a>
         </li>
     {% empty %}
         <li>No tasks yet</li>
