@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>My profile</h2>
+
+{% if user.avatar %}
+    <img src="{{ user.avatar.url }}" width="120">
+{% endif %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+
+<hr>
+
+<h3>Statistics</h3>
+<ul>
+    <li>Total tasks: {{ total_tasks }}</li>
+    <li>Completed: {{ completed_tasks }}</li>
+    <li>Active: {{ active_tasks }}</li>
+</ul>
+{% endblock %}

@@ -2,12 +2,15 @@
 <html>
 <head>
     <title>Task Manager</title>
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 
 <nav>
     {% if user.is_authenticated %}
-        <a href="{% url 'task-list' %}">Task List</a>
+        <a href="{% url 'task-list' %}">Task List</a> |
+        <a href="{% url 'profile' %}">Profile</a>
         Hello, {{ user.username }} |
         <form method="post" action="{% url 'logout' %}" style="display: inline;">
             {% csrf_token %}

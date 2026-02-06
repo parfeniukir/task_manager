@@ -12,7 +12,7 @@
                 {% csrf_token %}
                 <input type="checkbox" {% if task.is_completed %} checked {% endif %} onchange="this.form.submit()">
 
-                {{ task.title }} - {{ task.deadline }}
+                <a href="{% url 'task-detail' task.pk %}">{{ task.title }}</a> - {{ task.deadline }}
             </form>
             <a href="{% url 'task-update' task.pk %}">Edit</a>
             <a href="{% url 'task-delete' task.pk %}">Delete</a>
