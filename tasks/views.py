@@ -17,6 +17,9 @@ class TaskListView(LoginRequiredMixin, ListView):
         return Task.objects.filter(owner=self.request.user)
 
 
+
+
+
 class TaskCreateView(CreateView):
     model = Task
     template_name = "tasks/task_create.html"
